@@ -202,8 +202,6 @@ public class OrderRebuild {
         deleteAll.setByIncome(null);
         deleteAll.setAccIncome(null);
         jgtPositionShareMapper.delete(deleteAll);
-        deleteAll.setTransactionCfmDate(now);
-        jgtPositionShareMapper.delete(deleteAll);
         List<PollingEntity> pollingEntityList = pollingMapper.selectAll();
         //接收S403结果集
         List<PositionShareDTO> positionShareDTOList = new ArrayList<>();
