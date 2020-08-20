@@ -1,0 +1,13 @@
+zhixin:
+  base_url: http://192.168.1.215:8003
+
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.1.2.32:3306/xhcf_jzbg_prod?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    username: root
+    password: xinhu@mysql

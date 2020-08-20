@@ -1,0 +1,22 @@
+
+spring:
+  application:
+    name: xinhu-wealth-jgt
+  profiles:
+    active: '@profileActive@' # 值来自maven的pom文件
+server:
+  port: 9093
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+  undertow:
+    io-threads: 8
+    worker-threads: 1024
+    buffer-size: 1024
+    direct-buffers: true
+
+#日志
+logging:
+  level:
+    com.xinhu.wealth.jgt: DEBUG

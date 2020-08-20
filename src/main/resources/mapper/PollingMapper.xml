@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xinhu.wealth.jgt.mapper.PollingMapper">
+
+    <!--管理员文章列表映射-->
+    <resultMap id="PollingMap" type="PollingMapEntity">
+        <id property="id" column="id"/>
+        <result property="body" column="body"/>
+        <result property="sing" column="sing"/>
+        <result property="processCode" column="processCode"/>
+        <result property="version" column="version"/>
+        <result property="pageIndex" column="pageIndex"/>
+        <result property="sendTime" column="sendTime"/>
+        <result property="type" column="type"/>
+        <result property="statu" column="statu"/>
+        <result property="accResult" column="acc_result"/>
+        <result property="isFile" column="is_file"/>
+        <result property="transactionAccountID" column="t_a_id"/>
+        <result property="taCode" column="ta_code"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="accStatus" column="acc_status"/>
+        <result property="fileErrorMessage" column="file_error_message"/>
+        <result property="accErrorMessage" column="acc_error_message"/>
+        <result property="bankName" column="bank_name"/>
+        <result property="OSerialno" column="oserialno"/>
+        <result property="confirmResult" column="confirm_result"/>
+        <result property="affirmDate" column="affirm_date"/>
+
+
+
+    </resultMap>
+
+
+
+    <select id="selectPollingByTime"  parameterType="java.lang.String" resultMap="PollingMap">
+        SELECT *
+        FROM user_jgt_polling
+        WHERE update_time <![CDATA[ >= ]]> CONCAT(#{agoTime},'00:00:00')
+        AND update_time <![CDATA[<= ]]> CONCAT(#{time},'23:59:00')
+    </select>
+
+
+
+
+    <!-- 查询确认结果 -->
+    <select id="selectConfirmResult"  resultMap="PollingMap">
+        SELECT *
+        FROM user_jgt_polling
+        WHERE statu = 1
+        AND is_file = 1
+        AND acc_status = 1
+        AND confirm_result is NULL
+        AND affirm_date is NULL
+    </select>
+
+    <select id="accountSearchV1"  parameterType="java.lang.String" resultMap="PollingMap">
+        SELECT *
+        FROM user_jgt_polling
+        WHERE affirm_date = #{time}
+    </select>
+
+
+
+
+
+
+</mapper>
